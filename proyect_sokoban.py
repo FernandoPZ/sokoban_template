@@ -157,7 +157,7 @@ class Sokoban:
         per_col=0
         per_row=0
     '''
-    
+
     #Personaje
     def personaje1 (self):
         contador_col=0
@@ -202,42 +202,23 @@ class Sokoban:
             self.mapa1[self.position_col] = 0
 
     def movimiento_arriba (self):
-        if mapa[self.per_col-1][self.per_row]==2:
-            print("hay una pared, no puedes pasar")  
-        elif self.mapa1[per_col][per_row]==6 and self.mapa1[per_col-1][per_row]==1 and self.mapa1[per_col-2][per_row]==4:
-            self.mapa1[per_col][per_row]=3
-            self.mapa1[per_col-2][per_row]=1
+        if mapa[per_col-1][per_row]==2:
+            print("hay una pared, no puedes pasar")
+
+        elif mapa[per_col][per_row]==6 and mapa[per_col-1][per_row]==1 and mapa[per_col-2][per_row]==4:
+            mapa[per_col][per_row]=3
+            mapa[per_col-2][per_row]=1
             per_col=per_col-1
-            self.mapa1[per_col][per_row]=0
-            imprimir_mapa1()      
-        elif self.mapa1[per_col][per_row]==6 and self.mapa1[per_col-1][per_row]==1 and self.mapa1[per_col-2][per_row]==3:
-            self.mapa1[per_col][per_row]=3
-            self.mapa1[per_col-2][per_row]=5
-            per_col=per_col-1
-            self.mapa1[per_col][per_row]=0
+            mapa[per_col][per_row]=0
             imprimir_mapa1()
 
-#prueba
-
-        '''
-        if self.mapa1[per_col-1][per_row]==2:
-            print("hay una pared, no puedes pasar")  
-
-        elif self.mapa1[per_col][per_row]==6 and self.mapa1[per_col-1][per_row]==1 and self.mapa1[per_col-2][per_row]==4:
-            self.mapa1[per_col][per_row]=3
-            self.mapa1[per_col-2][per_row]=1
+        elif mapa[per_col][per_row]==6 and mapa[per_col-1][per_row]==1 and mapa[per_col-2][per_row]==3:
+            mapa[per_col][per_row]=3
+            mapa[per_col-2][per_row]=5
             per_col=per_col-1
-            self.mapa1[per_col][per_row]=0
-            imprimir_mapa1()      
-
-
-        elif self.mapa1[per_col][per_row]==6 and self.mapa1[per_col-1][per_row]==1 and self.mapa1[per_col-2][per_row]==3:
-            self.mapa1[per_col][per_row]=3
-            self.mapa1[per_col-2][per_row]=5
-            per_col=per_col-1
-            self.mapa1[per_col][per_row]=0
-            imprimir_mapa1()      
-
+            mapa[per_col][per_row]=0
+            imprimir_mapa1()
+    
         elif mapa[per_col][monoY]==6 and mapa[per_col-1][monoY]==3:
             mapa[per_col][monoY]=3
             per_col=per_col-1
@@ -305,7 +286,6 @@ class Sokoban:
 
         elif mapa[monoX-1][monoY]==5 and mapa[monoX-2][monoY]==2:
             print("No puedes atravesar los muros... aún ;)")
-        '''
         
 #alto
     def movimiento_abajo (self):
