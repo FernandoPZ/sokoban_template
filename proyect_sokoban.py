@@ -20,8 +20,6 @@ class Sokoban:
 
     #Variables generales
     def __init__ (self):
-        self.position_row = 4
-        self.position_col = 5
         pass
     
     #Mapas
@@ -151,13 +149,31 @@ class Sokoban:
             print (smapa)
             smapa = ""
 
+    '''
+    #Direcciones
+    def direccion (self):
+        contador_col=0
+        contador_row=0
+        per_col=0
+        per_row=0
+    '''
+    
     #Personaje
-    def personaje (self):
-        for p in range(len(self.mapa1)):
-            for q in range(len(self.mapa1)):
-                if self.mapa1[p][q] == 0:
-                    self.position_col = p
-                    self.position_row = q
+    def personaje1 (self):
+        contador_col=0
+        contador_row=0
+        per_col=0
+        per_row=0
+        for search_col in mapa:
+            for search_row in search_col:
+                if search_row != 0 and search_row != 6:
+                    contador_row=contador_row+1
+                else:
+                    per_col=contador_col
+                    per_row=contador_row
+                    break
+            contador_col=contador_col+1
+            contador_row=0
 
     #Muestra los controles
     def instrucciones (self):
@@ -178,7 +194,6 @@ class Sokoban:
         elif self.mapa1[self.position_col - 1] == 1:
             tem_col = self.position_col
 
-
     def movimiento_izquierda (self):
         if self.mapa1[self.position_col + 1] == 4:
             tem_col = self.position_col
@@ -187,12 +202,112 @@ class Sokoban:
             self.mapa1[self.position_col] = 0
 
     def movimiento_arriba (self):
-        if self.mapa1[self.position_row - 1] == 4:
-            tem_row = self.position_row
-            self.position_row = self.position_row - 1
-            self.mapa1[tem_row] = 4
-            self.mapa1[self.position_row] = 0
+        if mapa[self.per_col-1][self.per_row]==2:
+            print("hay una pared, no puedes pasar")  
+        elif self.mapa1[per_col][per_row]==6 and self.mapa1[per_col-1][per_row]==1 and self.mapa1[per_col-2][per_row]==4:
+            self.mapa1[per_col][per_row]=3
+            self.mapa1[per_col-2][per_row]=1
+            per_col=per_col-1
+            self.mapa1[per_col][per_row]=0
+            imprimir_mapa1()      
+        elif self.mapa1[per_col][per_row]==6 and self.mapa1[per_col-1][per_row]==1 and self.mapa1[per_col-2][per_row]==3:
+            self.mapa1[per_col][per_row]=3
+            self.mapa1[per_col-2][per_row]=5
+            per_col=per_col-1
+            self.mapa1[per_col][per_row]=0
+            imprimir_mapa1()
 
+#prueba
+
+        '''
+        if self.mapa1[per_col-1][per_row]==2:
+            print("hay una pared, no puedes pasar")  
+
+        elif self.mapa1[per_col][per_row]==6 and self.mapa1[per_col-1][per_row]==1 and self.mapa1[per_col-2][per_row]==4:
+            self.mapa1[per_col][per_row]=3
+            self.mapa1[per_col-2][per_row]=1
+            per_col=per_col-1
+            self.mapa1[per_col][per_row]=0
+            imprimir_mapa1()      
+
+
+        elif self.mapa1[per_col][per_row]==6 and self.mapa1[per_col-1][per_row]==1 and self.mapa1[per_col-2][per_row]==3:
+            self.mapa1[per_col][per_row]=3
+            self.mapa1[per_col-2][per_row]=5
+            per_col=per_col-1
+            self.mapa1[per_col][per_row]=0
+            imprimir_mapa1()      
+
+        elif mapa[per_col][monoY]==6 and mapa[per_col-1][monoY]==3:
+            mapa[per_col][monoY]=3
+            per_col=per_col-1
+            mapa[per_col][monoY]=6
+            mapaimpreso()
+        
+        elif mapa[monoX][monoY]==6 and mapa[monoX-1][monoY]==5 and mapa[monoX-2][monoY]==3:
+            mapa[monoX][monoY]=3
+            mapa[monoX-2][monoY]=5
+            monoX=monoX-1
+            mapa[monoX][monoY]=6
+            mapaimpreso()
+        
+        elif mapa[monoX][monoY]==6 and mapa[monoX-1][monoY]==4:
+            mapa[monoX][monoY]=3
+            monoX=monoX-1
+            mapa[monoX][monoY]=0
+            mapaimpreso()
+       
+        elif mapa[monoX-1][monoY]==4:
+            mapa[monoX][monoY]=4
+            monoX=monoX-1
+            mapa[monoX][monoY]=0
+            mapaimpreso()   
+
+        elif mapa[monoX-1][monoY]==3:
+            mapa[monoX][monoY]=4
+            monoX=monoX-1
+            mapa[monoX][monoY]=6
+            mapaimpreso()
+
+        elif mapa[monoX-1][monoY]==1 and mapa[monoX-2][monoY]==4:
+            mapa[monoX][monoY]=4
+            mapa[monoX-2][monoY]=1
+            monoX=monoX-1
+            mapa[monoX][monoY]=0
+            mapaimpreso()
+
+        elif mapa[monoX-1][monoY]==1 and mapa[monoX-2][monoY]==2:
+            print ("No puedes atravesar el muro por ti mismo, ¿Qué te hace pensar que con una caja lo haras?")
+
+        elif mapa[monoX-1][monoY]==1 and mapa[monoX-2][monoY]==3:
+            mapa[monoX][monoY]=4
+            mapa[monoX-2][monoY]=5
+            monoX=monoX-1
+            mapa[monoX][monoY]=0
+            mapaimpreso()
+        
+        elif mapa[monoX-1][monoY]==1 and mapa[monoX-2][monoY]==1:
+            print("Con que trabajos mueves una jajaja")
+
+        elif mapa[monoX-1][monoY]==5 and mapa[monoX-2][monoY]==3:
+            mapa[monoX][monoY]=4
+            mapa[monoX-2][monoY]=5
+            monoX=monoX-1
+            mapa[monoX][monoY]=6
+            mapaimpreso()
+
+        elif mapa[monoX-1][monoY]==5 and mapa[monoX-2][monoY]==4:
+            mapa[monoX][monoY]=3
+            mapa[monoX-2][monoY]=1
+            monoX=monoX-1
+            mapa[monoX][monoY]=6
+            mapaimpreso()
+
+        elif mapa[monoX-1][monoY]==5 and mapa[monoX-2][monoY]==2:
+            print("No puedes atravesar los muros... aún ;)")
+        '''
+        
+#alto
     def movimiento_abajo (self):
         if self.mapa1[self.position_row + 1] == 4:
             tem_row = self.position_row
@@ -202,8 +317,8 @@ class Sokoban:
 
     def nivel1(self):
         os. system ("cls")
+        self.personaje1()
         self.crear_mapa1()
-        self.personaje()
         while True:
             os. system ("cls")
             print (" Nivel 1 ")
@@ -238,6 +353,7 @@ eleccion = input ("Escoja un nivel: \n")
 
 #Opcion1
 if eleccion == "1":
+    mapa = pop.crear_mapa1()
     pop.nivel1()
 
 elif eleccion == "2":
